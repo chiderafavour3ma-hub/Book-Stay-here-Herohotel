@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HERO HOTEL — Stay Somewhere Exceptional | Luxury Hospitality</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        'display': ['Cormorant Garamond', 'serif'],
+        'heading': ['Playfair Display', 'serif'],
+        'body': ['Inter', 'sans-serif'],
+      },
+      colors: {
+        'hero-gold': '#C9A86A',
+        'hero-gold-dark': '#B8935F',
+        'hero-cream': '#F8F5F0',
+        'hero-charcoal': '#0F0F0F',
+        'hero-stone': '#1A1A1A',
+        'hero-muted': '#8A8A8A',
+      }
+    }
+  }
+}
+</script>
+<style>
+  *{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;background:#F8F5F0;color:#0F0F0F;overflow-x:hidden}
+  .font-display{font-family:'Cormorant Garamond',serif}
+  .font-heading{font-family:'Playfair Display',serif}
+  ::-webkit-scrollbar{width:6px}
+  ::-webkit-scrollbar-track{background:#F8F5F0}
+  ::-webkit-scrollbar-thumb{background:#C9A86A;border-radius:10px}
+  /* loader */
+  #loader{position:fixed;inset:0;background:#0F0F0F;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .8s ease, visibility .8s}
+  #loader.hide{opacity:0;visibility:hidden;pointer-events:none}
+  .loader-line{width:120px;height:1px;background:rgba(201,168,106,.3);position:relative;overflow:hidden;margin-top:24px}
+  .loader-progress{position:absolute;left:0;top:0;height:100%;width:50%;background:#C9A86A;animation:load 1.6s ease-in-out infinite}
+  @keyframes load{0%{transform:translateX(-100%)}100%{transform:translateX(250%)}}
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(28px);transition:all .9s cubic-bezier(.16,1,.3,1)}
+  .reveal.active{opacity:1;transform:none}
+  .reveal-delay-1{transition-delay:.12s}
+  .reveal-delay-2{transition-delay:.24s}
+  .reveal-delay-3{transition-delay:.36s}
+  /* hero zoom */
+  @keyframes kenburns{0%{transform:scale(1)}100%{transform:scale(1.08)}}
+  .hero-zoom{animation:kenburns 12s ease-in-out infinite alternate}
+  /* nav */
+  .nav-scrolled{background:rgba(15,15,15,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
+  /* gold line */
+  .gold-line{height:1px;background:linear-gradient(90deg,transparent, #C9A86A, transparent)}
+  /* card hover */
+  .room-card{transition:all .5s cubic-bezier(.16,1,.3,1)}
+  .room-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(0,0,0,.12)}
+  .room-card:hover .room-img{transform:scale(1.06)}
+  /* magnetic */
+  .magnetic{transition:transform .2s ease-out}
+  /* gallery */
+  .gallery-item{overflow:hidden;cursor:pointer}
+  .gallery-item img{transition:transform .7s ease}
+  .gallery-item:hover img{transform:scale(1.08)}
+  /* lightbox */
+  #lightbox{backdrop-filter:blur(12px)}
+  /* input */
+  .booking-input{background:#fff;border:1px solid #E8E0D6;transition:all .2s}
+  .booking-input:focus{border-color:#C9A86A;box-shadow:0 0 0 3px rgba(201,168,106,.15);outline:none}
+  /* grain */
+  .grain::before{content:"";position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");pointer-events:none}
+</style>
+</head>
+<body class="antialiased">
+
+<!-- Loader -->
+<div id="loader">
+  <div class="text-center">
+    <p class="font-display text-[11px] tracking-[0.45em] text-hero-gold mb-3">HOSPITALITY REDEFINED</p>
+    <h1 class="font-display text-5xl md:text-6xl text-white font-light tracking-[0.18em]">HERO</h1>
+    <p class="font-display text-[10px] tracking-[0.6em] text-white/60 mt-2">HOTEL</p>
+    <div class="loader-line mx-auto"><div class="loader-progress"></div></div>
+  </div>
+</div>
+
+<!-- Top Bar - Editable -->
+<div class="hidden lg:block bg-[#0F0F0F] text-white/70 text-[11px] tracking-widest py-2.5 px-6 border-b border-white/5">
+  <div class="max-w-[1400px] mx-auto flex justify-between items-center">
+    <div class="flex gap-6">
+      <span class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-hero-gold text-[10px]"></i> <!-- EDITABLE: Address --> 12 Adeola Odeku Street, Victoria Island, Lagos</span>
+      <span class="flex items-center gap-2"><i class="fa-solid fa-phone text-hero-gold text-[10px]"></i> <!-- EDITABLE: Phone --> +234 800 000 0000</span>
+    </div>
+    <div class="flex items-center gap-5">
+      <span class="text-white/40">EN</span>
+      <div class="flex gap-3 text-[11px]">
+        <a href="#" class="hover:text-hero-gold transition"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="hover:text-hero-gold transition"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="hover:text-hero-gold transition"><i class="fa-brands fa-facebook-f"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav id="navbar" class="fixed top-0 lg:top-[36px] left-0 w-full z-40 transition-all duration-500 py-4 lg:py-5 px-6">
+  <div class="max-w-[1400px] mx-auto flex items-center justify-between">
+    <a href="#home" class="flex items-center gap-3">
+      <div class="w-9 h-9 border border-hero-gold flex items-center justify-center">
+        <span class="font-display font-semibold text-white text-sm tracking-[0.2em]">H</span>
+      </div>
+      <div class="leading-none">
+        <p class="font-display text-white text-[18px] tracking-[0.28em] font-medium">HERO</p>
+        <p class="font-body text-[8px] tracking-[0.45em] text-white/60 -mt-1">HOTEL</p>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-8">
+      <a href="#home" class="text-[11px] tracking-[0.18em] text-white hover:text-hero-gold transition">HOME</a>
+      <a href="#rooms" class="text-[11px] tracking-[0.18em] text-white/70 hover:text-hero-gold transition">ROOMS & SUITES</a>
+      <a href="#experience" class="text-[11px] tracking-[0.18em] text-white/70 hover:text-hero-gold transition">EXPERIENCE</a>
+      <a href="#amenities" class="text-[11px] tracking-[0.18em] text-white/70 hover:text-hero-gold transition">AMENITIES</a>
+      <a href="#dining" class="text-[11px] tracking-[0.18em] text-white/70 hover:text-hero-gold transition">DINING</a>
+      <a href="#gallery" class="text-[11px] tracking-[0.18em] text-white/70 hover:text-hero-gold transition">GALLERY</a>
+      <a href="#about" class="text-[11px] tracking-[0.18em] text-white/70 hover:text-hero-gold transition">ABOUT</a>
+      <a href="#contact" class="text-[11px] tracking-[0.18em] text-white/70 hover:text-hero-gold transition">CONTACT</a>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <a href="#booking" class="hidden md:inline-flex bg-hero-gold hover:bg-hero-gold-dark text-white text-[11px] tracking-[0.16em] font-medium px-7 py-3.5 transition magnetic" id="navBookBtn">BOOK NOW</a>
+      <button id="mobileMenuBtn" class="lg:hidden w-10 h-10 border border-white/20 flex items-center justify-center text-white">
+        <i class="fa-solid fa-bars text-sm"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="lg:hidden absolute top-full left-0 w-full bg-[#0F0F0F] border-t border-white/10 hidden">
+    <div class="px-6 py-8 flex flex-col gap-5">
+      <a href="#home" class="text-sm tracking-widest text-white mobile-link">HOME</a>
+      <a href="#rooms" class="text-sm tracking-widest text-white/70 mobile-link">ROOMS & SUITES</a>
+      <a href="#experience" class="text-sm tracking-widest text-white/70 mobile-link">EXPERIENCE</a>
+      <a href="#amenities" class="text-sm tracking-widest text-white/70 mobile-link">AMENITIES</a>
+      <a href="#dining" class="text-sm tracking-widest text-white/70 mobile-link">DINING</a>
+      <a href="#gallery" class="text-sm tracking-widest text-white/70 mobile-link">GALLERY</a>
+      <a href="#about" class="text-sm tracking-widest text-white/70 mobile-link">ABOUT</a>
+      <a href="#contact" class="text-sm tracking-widest text-white/70 mobile-link">CONTACT</a>
+      <a href="#booking" class="mt-2 bg-hero-gold text-white text-center py-4 text-xs tracking-widest mobile-link">BOOK YOUR STAY</a>
+      <p class="text-[11px] text-white/30 tracking-widest text-center mt-2">+234 800 000 0000 — 24H FRONT DESK</p>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="relative h-[100vh] min-h-[680px] overflow-hidden bg-black flex items-center justify-center">
+  <div class="absolute inset-0">
+    <img id="heroImg" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop" alt="Hero Hotel Lobby" class="w-full h-full object-cover hero-zoom opacity-90">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/70"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/20"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 text-center px-6 max-w-5xl mx-auto pt-16">
+    <p class="reveal font-body text-[10px] md:text-[11px] tracking-[0.42em] text-white/80 mb-6">VICTORIA ISLAND • LAGOS • EST. 2024</p>
+    <div class="reveal reveal-delay-1">
+      <h1 class="font-display font-light text-white leading-[0.9] text-[56px] md:text-[92px] lg:text-[108px] tracking-[0.08em]">
+        HERO <span class="font-light italic text-hero-gold">HOTEL</span>
+      </h1>
+    </div>
+    <div class="reveal reveal-delay-2 mt-6">
+      <p class="font-display text-[22px] md:text-[36px] lg:text-[42px] font-light text-white leading-none tracking-wide">Stay Somewhere <span class="italic font-light">Exceptional.</span></p>
+      <div class="w-16 h-[1px] bg-hero-gold mx-auto mt-6"></div>
+      <p class="font-body text-[13px] md:text-[14px] text-white/70 max-w-xl mx-auto mt-6 leading-relaxed font-light">A refined sanctuary in the heart of Lagos — where contemporary luxury meets warm Nigerian hospitality. Every detail curated for the distinguished traveller.</p>
+    </div>
+    <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center mt-10">
+      <a href="#booking" class="bg-hero-gold hover:bg-hero-gold-dark text-white px-9 py-4 text-[11px] tracking-[0.18em] font-medium transition flex items-center justify-center gap-3 magnetic">
+        BOOK YOUR STAY <i class="fa-solid fa-arrow-right text-[10px]"></i>
+      </a>
+      <a href="#rooms" class="border border-white/30 hover:border-white hover:bg-white hover:text-black text-white px-9 py-4 text-[11px] tracking-[0.18em] font-medium transition backdrop-blur-sm">
+        EXPLORE ROOMS
+      </a>
+    </div>
+
+    <!-- Hero meta -->
+    <div class="reveal reveal-delay-3 hidden md:flex justify-center gap-10 mt-14 pt-8 border-t border-white/10 max-w-2xl mx-auto">
+      <div class="text-center">
+        <p class="font-display text-2xl text-white font-light">4.9</p>
+        <p class="text-[10px] tracking-[0.2em] text-white/50">GUEST RATING</p>
+      </div>
+      <div class="w-[1px] bg-white/10"></div>
+      <div class="text-center">
+        <p class="font-display text-2xl text-white font-light">84</p>
+        <p class="text-[10px] tracking-[0.2em] text-white/50">LUXURY ROOMS</p>
+      </div>
+      <div class="w-[1px] bg-white/10"></div>
+      <div class="text-center">
+        <p class="font-display text-2xl text-white font-light">24/7</p>
+        <p class="text-[10px] tracking-[0.2em] text-white/50">CONCIERGE</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10 hidden md:flex">
+    <span class="text-[9px] tracking-[0.3em] text-white/50">SCROLL</span>
+    <div class="w-[1px] h-10 bg-gradient-to-b from-white/40 to-transparent"></div>
+  </div>
+
+  <!-- Floating booking teaser left -->
+  <div class="absolute left-6 bottom-6 hidden xl:flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/10 px-4 py-3">
+    <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?q=80&w=200&auto=format&fit=crop" class="w-14 h-14 object-cover" alt="">
+    <div>
+      <p class="text-[10px] tracking-widest text-white/60">FEATURED</p>
+      <p class="text-xs text-white font-medium">Presidential Suite</p>
+      <p class="text-[11px] text-hero-gold">₦180,000 / night</p>
+    </div>
+  </div>
+</section>
+
+<!-- Booking Bar -->
+<section id="booking" class="relative z-20 -mt-10 px-4">
+  <div class="max-w-[1200px] mx-auto bg-white shadow-[0_20px_60px_rgba(0,0,0,.12)] border border-[#E8E0D6] p-4 md:p-6">
+    <div class="flex flex-col lg:flex-row gap-4 items-stretch">
+      <div class="flex-1 grid grid-cols-2 lg:grid-cols-5 gap-3">
+        <div>
+          <label class="text-[10px] tracking-[0.18em] text-hero-muted font-medium">CHECK-IN</label>
+          <div class="relative mt-1.5">
+            <input type="date" id="checkIn" class="booking-input w-full px-3 py-3.5 text-sm pr-8">
+          </div>
+        </div>
+        <div>
+          <label class="text-[10px] tracking-[0.18em] text-hero-muted font-medium">CHECK-OUT</label>
+          <div class="relative mt-1.5">
+            <input type="date" id="checkOut" class="booking-input w-full px-3 py-3.5 text-sm">
+          </div>
+        </div>
+        <div>
+          <label class="text-[10px] tracking-[0.18em] text-hero-muted font-medium">GUESTS</label>
+          <select id="guests" class="booking-input w-full px-3 py-3.5 text-sm mt-1.5">
+            <option>1 Guest</option>
+            <option selected>2 Guests</option>
+            <option>3 Guests</option>
+            <option>4 Guests</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-[10px] tracking-[0.18em] text-hero-muted font-medium">ROOMS</label>
+          <select id="roomsCount" class="booking-input w-full px-3 py-3.5 text-sm mt-1.5">
+            <option>1 Room</option>
+            <option>2 Rooms</option>
+            <option>3 Rooms</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-[10px] tracking-[0.18em] text-hero-muted font-medium">ROOM TYPE</label>
+          <select id="roomType" class="booking-input w-full px-3 py-3.5 text-sm mt-1.5">
+            <option>Any Type</option>
+            <option>Standard — ₦45k</option>
+            <option>Deluxe — ₦65k</option>
+            <option>Executive Suite — ₦95k</option>
+            <option>Presidential — ₦180k</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2 lg:w-[260px]">
+        <button id="checkAvailability" class="bg-hero-charcoal hover:bg-black text-white py-4 text-[11px] tracking-[0.18em] font-medium transition flex items-center justify-center gap-2">
+          CHECK AVAILABILITY <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </button>
+        <button id="bookWhatsapp" class="border border-[#E8E0D6] hover:border-hero-gold hover:text-hero-gold bg-white py-3.5 text-[11px] tracking-[0.16em] font-medium transition flex items-center justify-center gap-2">
+          <i class="fa-brands fa-whatsapp text-sm"></i> BOOK VIA WHATSAPP
+        </button>
+      </div>
+    </div>
+    <p class="text-[10px] tracking-wide text-hero-muted mt-3 text-center">Demo pricing — subject to confirmation. — WhatsApp: <span class="text-hero-gold font-medium">+234 800 000 0000</span> (editable placeholder)</p>
+  </div>
+</section>
+
+<!-- Rooms & Suites -->
+<section id="rooms" class="py-20 md:py-28 px-6 bg-hero-cream">
+  <div class="max-w-[1400px] mx-auto">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+      <div class="reveal">
+        <p class="text-[11px] tracking-[0.35em] text-hero-gold font-medium">ACCOMMODATION</p>
+        <h2 class="font-display text-[38px] md:text-[54px] font-light leading-none mt-3">Rooms & <span class="italic">Suites</span></h2>
+        <div class="w-12 h-[1px] bg-hero-gold mt-5"></div>
+      </div>
+      <div class="reveal reveal-delay-1 max-w-md">
+        <p class="text-[13px] leading-relaxed text-hero-muted">Thoughtfully designed retreats where natural materials, soft lighting and curated comfort create a sense of calm. All rates are demo pricing — easy to update for launch.</p>
+        <a href="#gallery" class="inline-flex items-center gap-2 text-[11px] tracking-[0.18em] font-medium mt-4 hover:text-hero-gold transition">VIEW GALLERY <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+      <!-- Standard -->
+      <div class="room-card bg-white border border-[#EFE8DE] overflow-hidden group reveal">
+        <div class="relative h-[320px] overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1200&auto=format&fit=crop" alt="Standard Room" class="room-img w-full h-full object-cover transition duration-700">
+          <div class="absolute top-4 left-4 bg-white px-3 py-1.5 text-[10px] tracking-[0.14em] font-medium">MOST BOOKED</div>
+          <div class="absolute top-4 right-4 bg-black/70 backdrop-blur text-white px-3 py-1.5 text-[11px]"><span class="text-hero-gold">₦45,000</span> / night</div>
+        </div>
+        <div class="p-7">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="font-display text-[22px] font-medium">Standard Room</h3>
+              <p class="text-[11px] tracking-[0.18em] text-hero-muted mt-1">28 SQM • 2 GUESTS • QUEEN BED</p>
+            </div>
+            <span class="text-[10px] tracking-widest border border-[#E8E0D6] px-2.5 py-1">CITY VIEW</span>
+          </div>
+          <p class="text-[13px] leading-relaxed text-hero-muted mt-4">Calm, light-filled room with premium bedding, work desk and spa-inspired bathroom. Ideal for business and short stays.</p>
+          <div class="flex flex-wrap gap-2 mt-5">
+            <span class="text-[11px] bg-[#F8F5F0] border border-[#E8E0D6] px-2.5 py-1 flex items-center gap-1.5"><i class="fa-solid fa-wifi text-hero-gold text-[10px]"></i> Wi-Fi</span>
+            <span class="text-[11px] bg-[#F8F5F0] border border-[#E8E0D6] px-2.5 py-1 flex items-center gap-1.5"><i class="fa-solid fa-snowflake text-hero-gold text-[10px]"></i> A/C</span>
+            <span class="text-[11px] bg-[#F8F5F0] border border-[#E8E0D6] px-2.5 py-1">Smart TV</span>
+            <span class="text-[11px] bg-[#F8F5F0] border border-[#E8E0D6] px-2.5 py-1">Minibar</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3 mt-6">
+            <button onclick="openRoom(0)" class="border border-hero-charcoal hover:bg-hero-charcoal hover:text-white py-3.5 text-[11px] tracking-[0.14em] font-medium transition">VIEW ROOM</button>
+            <button onclick="bookRoom('Standard Room — ₦45,000/night')" class="bg-hero-gold hover:bg-hero-gold-dark text-white py-3.5 text-[11px] tracking-[0.14em] font-medium transition">BOOK NOW</button>
+          </div>
+          <p class="text-[10px] text-hero-muted mt-3 text-center">Demo pricing — subject to confirmation</p>
+        </div>
+      </div>
+
+      <!-- Deluxe -->
+      <div class="room-card bg-white border border-[#EFE8DE] overflow-hidden group reveal reveal-delay-1">
+        <div class="relative h-[320px] overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=1200&auto=format&fit=crop" alt="Deluxe Room" class="room-img w-full h-full object-cover transition duration-700">
+          <div class="absolute top-4 right-4 bg-black/70 backdrop-blur text-white px-3 py-1.5 text-[11px]"><span class="text-hero-gold">₦65,000</span> / night</div>
+        </div>
+        <div class="p-7">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="font-display text-[22px] font-medium">Deluxe Room</h3>
+              <p class="text-[11px] tracking-[0.18em] text-hero-muted mt-1">35 SQM • 2 GUESTS • KING BED</p>
+            </div>
+            <span class="text-[10px] tracking-widest border border-[#E8E0D6] px-2.5 py-1">GARDEN VIEW</span>
+          </div>
+          <p class="text-[13px] leading-relaxed text-hero-muted mt-4">Spacious retreat with lounge area, king bed, rainfall shower and curated minibar. Warm timber tones and soft linen textures.</p>
+          <div class="flex flex-wrap gap-2 mt-5">
+            <span class="text-[11px] bg-[#F8F5F0] border border-[#E8E0D6] px-2.5 py-1 flex items-center gap-1.5"><i class="fa-solid fa-wifi text-hero-gold text-[10px]"></i> Wi-Fi</span>
+            <span class="text-[11px] bg-[#F8F5F0] border border-[#E8E0D6] px-2.5 py-1">Balcony</span>
+            <span class="text-[11px] bg-[#F8F5F0] border border-[#E8E0D6] px-2.5 py-1">Work Desk</span>
+            <span class="text-[11px] bg-[#F8F5F0] border border-[#E8E0D6] px-2.5 py-1">Room Service</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3 mt-6">
+            <button onclick="openRoom(1)" class="border border-hero-charcoal hover:bg-hero-charcoal hover:text-white py-3.5 text-[11px] tracking-[0.14em] font-medium transition">VIEW ROOM</button>
+            <button onclick="bookRoom('Deluxe Room — ₦65,000/night')" class="bg-hero-gold hover:bg-hero-gold-dark text-white py-3.5 text-[11px] tracking-[0.14em] font-medium transition">BOOK NOW</button>
+          </div>
+          <p class="text-[10px] text-hero-muted mt-3 text-center">Demo pricing — subject to confirmation</p>
+        </div>
+      </div>
+
+      <!-- Executive Suite -->
+      <div class="room-card bg-white border border-[#EFE8DE] overflow-hidden group reveal">
+        <div class="relative h-[340px] overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop" alt="Executive Suite" class="room-img w-full h-full object-cover transition duration-700">
+          <div class="absolute top-4 left-4 bg-hero-gold text-white px-3 py-1.5 text-[10px] tracking-[0.14em] font-medium">SUITE</div>
+          <div class="absolute top-4 right-4 bg-black/70 backdrop-blur text-white px-3 py-1.5 text-[11px]"><span class="text-hero-gold">₦95,000</span> / night</div>
+        </div>
+        <div class="p-7">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="font-display text-[22px] font-medium">Executive Suite</h3>
+              <p class="text-[11px] tracking-[0.18em] text-hero-muted mt-1">48 SQM • 3 GUESTS • KING + LOUNGE</p>
+            </div>
+            <span class="text-[10px] tracking-widest bg-hero-charcoal text-white px-2.5 py-1">PANORAMIC</span>
+          </div>
+          <p class="text-[13px] leading-relaxed text-hero-muted mt-4">Separate living area, dining nook and floor-to-ceiling windows. Perfect for extended stays and entertaining.</p>
+          <div class="flex flex-wrap gap-2 mt-5">
+            <span class="text-[11px] bg-[#F8F5F0] border border-[#E8E0D6] px-2.5 py-1">Living Area</span>
+            <span class="text-[11px] bg-[#F8F5F0] border border-[#E8E0D6] px-2.5 py-1">Bathtub</span>
+            <span class="text-[11px] bg-[#F8F5F0] border border-[#E8E0D6] px-2.5 py-1">Nespresso</span>
+            <span class="text-[11px] bg-[#F8F5F0] border border-[#E8E0D6] px-2.5 py-1">Executive Lounge</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3 mt-6">
+            <button onclick="openRoom(2)" class="border border-hero-charcoal hover:bg-hero-charcoal hover:text-white py-3.5 text-[11px] tracking-[0.14em] font-medium transition">VIEW ROOM</button>
+            <button onclick="bookRoom('Executive Suite — ₦95,000/night')" class="bg-hero-gold hover:bg-hero-gold-dark text-white py-3.5 text-[11px] tracking-[0.14em] font-medium transition">BOOK NOW</button>
+          </div>
+          <p class="text-[10px] text-hero-muted mt-3 text-center">Demo pricing — subject to confirmation</p>
+        </div>
+      </div>
+
+      <!-- Presidential -->
+      <div class="room-card bg-[#0F0F0F] text-white overflow-hidden group reveal reveal-delay-1 border border-[#1A1A1A]">
+        <div class="relative h-[340px] overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=1200&auto=format&fit=crop" alt="Presidential Suite" class="room-img w-full h-full object-cover transition duration-700 opacity-90">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+          <div class="absolute top-4 left-4 bg-hero-gold text-white px-3 py-1.5 text-[10px] tracking-[0.14em] font-medium">SIGNATURE</div>
+          <div class="absolute top-4 right-4 bg-white text-black px-3 py-1.5 text-[11px] font-medium"><span class="text-hero-gold">₦180,000</span> / night</div>
+          <div class="absolute bottom-4 left-4 flex gap-2">
+            <span class="bg-white/15 backdrop-blur border border-white/20 text-white text-[10px] tracking-widest px-2.5 py-1">PRIVATE TERRACE</span>
+            <span class="bg-white/15 backdrop-blur border border-white/20 text-white text-[10px] tracking-widest px-2.5 py-1">BUTLER</span>
+          </div>
+        </div>
+        <div class="p-7">
+          <h3 class="font-display text-[22px] font-medium">Presidential Suite</h3>
+          <p class="text-[11px] tracking-[0.18em] text-white/50 mt-1">85 SQM • 4 GUESTS • 1 BEDROOM + LOUNGE</p>
+          <p class="text-[13px] leading-relaxed text-white/60 mt-4">Our most exclusive address. Expansive suite with private terrace, dining for six, curated art and dedicated butler service.</p>
+          <div class="flex flex-wrap gap-2 mt-5">
+            <span class="text-[11px] bg-white/10 border border-white/10 px-2.5 py-1">Terrace</span>
+            <span class="text-[11px] bg-white/10 border border-white/10 px-2.5 py-1">Butler Service</span>
+            <span class="text-[11px] bg-white/10 border border-white/10 px-2.5 py-1">Jacuzzi</span>
+            <span class="text-[11px] bg-white/10 border border-white/10 px-2.5 py-1">Meeting Area</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3 mt-6">
+            <button onclick="openRoom(3)" class="border border-white/20 hover:bg-white hover:text-black py-3.5 text-[11px] tracking-[0.14em] font-medium transition">VIEW SUITE</button>
+            <button onclick="bookRoom('Presidential Suite — ₦180,000/night')" class="bg-hero-gold hover:bg-hero-gold-dark text-white py-3.5 text-[11px] tracking-[0.14em] font-medium transition">BOOK NOW</button>
+          </div>
+          <p class="text-[10px] text-white/40 mt-3 text-center">Demo pricing — subject to confirmation</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience" class="py-20 md:py-28 bg-white">
+  <div class="max-w-[1400px] mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+      <p class="text-[11px] tracking-[0.35em] text-hero-gold font-medium">THE JOURNEY</p>
+      <h2 class="font-display text-[36px] md:text-[52px] font-light leading-none mt-3">The <span class="italic">Hero</span> Experience</h2>
+      <p class="text-[13px] leading-relaxed text-hero-muted mt-4">Five moments that define a stay with us — from effortless arrival to lingering farewell. Crafted to feel intuitive, warm and quietly luxurious.</p>
+    </div>
+
+    <div class="space-y-16 md:space-y-24">
+      <!-- 01 Arrival -->
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center reveal">
+        <div class="relative overflow-hidden h-[420px] lg:h-[520px]">
+          <img src="https://images.unsplash.com/photo-1551882547-b79c417635b0?q=80&w=1200&auto=format&fit=crop" alt="Arrival" class="w-full h-full object-cover">
+          <div class="absolute bottom-0 left-0 bg-white px-6 py-5 flex items-center gap-4">
+            <span class="font-display text-4xl font-light text-hero-gold">01</span>
+            <div class="w-[1px] h-10 bg-[#E8E0D6]"></div>
+            <p class="text-[11px] tracking-[0.2em] font-medium leading-tight">ARRIVAL<br><span class="text-hero-muted font-normal tracking-normal">15:00 • Welcome</span></p>
+          </div>
+        </div>
+        <div class="lg:pl-10">
+          <p class="text-[11px] tracking-[0.2em] text-hero-gold">ARRIVAL</p>
+          <h3 class="font-display text-[28px] md:text-[36px] font-light leading-none mt-2">An arrival that <span class="italic">breathes</span></h3>
+          <p class="text-[13px] leading-relaxed text-hero-muted mt-5">Step into a lobby of stone, timber and soft light. Your host greets you by name, luggage glides away, and chilled hibiscus welcomes you — Lagos heat instantly forgotten.</p>
+          <ul class="mt-6 space-y-3 text-[13px] text-hero-muted">
+            <li class="flex gap-3"><i class="fa-solid fa-check text-hero-gold mt-1 text-[10px]"></i> Valet & secure parking — 24/7 front desk</li>
+            <li class="flex gap-3"><i class="fa-solid fa-check text-hero-gold mt-1 text-[10px]"></i> Express check-in & digital key on request</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 02 Comfort -->
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center reveal">
+        <div class="lg:order-2 relative overflow-hidden h-[420px] lg:h-[520px]">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop" alt="Comfort" class="w-full h-full object-cover">
+          <div class="absolute bottom-0 left-0 lg:left-auto lg:right-0 bg-hero-charcoal text-white px-6 py-5 flex items-center gap-4">
+            <span class="font-display text-4xl font-light text-hero-gold">02</span>
+            <div class="w-[1px] h-10 bg-white/20"></div>
+            <p class="text-[11px] tracking-[0.2em] font-medium leading-tight text-white">COMFORT<br><span class="text-white/60 font-normal tracking-normal">Rest, restored</span></p>
+          </div>
+        </div>
+        <div class="lg:order-1 lg:pr-10">
+          <p class="text-[11px] tracking-[0.2em] text-hero-gold">COMFORT</p>
+          <h3 class="font-display text-[28px] md:text-[36px] font-light leading-none mt-2">Sleep, <span class="italic">perfected</span></h3>
+          <p class="text-[13px] leading-relaxed text-hero-muted mt-5">Egyptian cotton, blackout drapery, pillow menu and whisper-quiet air conditioning. Every room is a retreat for deep, uninterrupted rest.</p>
+          <div class="grid grid-cols-3 gap-4 mt-6">
+            <div class="bg-hero-cream border border-[#E8E0D6] p-4 text-center">
+              <p class="font-display text-xl">300</p>
+              <p class="text-[10px] tracking-widest text-hero-muted">THREAD COUNT</p>
+            </div>
+            <div class="bg-hero-cream border border-[#E8E0D6] p-4 text-center">
+              <p class="font-display text-xl">28°</p>
+              <p class="text-[10px] tracking-widest text-hero-muted">PERFECT COOL</p>
+            </div>
+            <div class="bg-hero-cream border border-[#E8E0D6] p-4 text-center">
+              <p class="font-display text-xl">100%</p>
+              <p class="text-[10px] tracking-widest text-hero-muted">QUIET</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 Dining -->
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center reveal">
+        <div class="relative overflow-hidden h-[420px] lg:h-[520px]">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1200&auto=format&fit=crop" alt="Dining" class="w-full h-full object-cover">
+          <div class="absolute bottom-0 left-0 bg-white px-6 py-5 flex items-center gap-4">
+            <span class="font-display text-4xl font-light text-hero-gold">03</span>
+            <div class="w-[1px] h-10 bg-[#E8E0D6]"></div>
+            <p class="text-[11px] tracking-[0.2em] font-medium leading-tight">DINING<br><span class="text-hero-muted font-normal tracking-normal">Taste & fire</span></p>
+          </div>
+        </div>
+        <div class="lg:pl-10">
+          <p class="text-[11px] tracking-[0.2em] text-hero-gold">DINING</p>
+          <h3 class="font-display text-[28px] md:text-[36px] font-light leading-none mt-2">Flavour, <span class="italic">without pretence</span></h3>
+          <p class="text-[13px] leading-relaxed text-hero-muted mt-5">From sunrise continental to late-night suya and continental classics — our kitchen is open, honest and deeply satisfying. Dine in, poolside or in-room.</p>
+          <div class="flex gap-3 mt-6">
+            <span class="text-xs border border-[#E8E0D6] px-3 py-2 bg-hero-cream">Restaurant & Bar</span>
+            <span class="text-xs border border-[#E8E0D6] px-3 py-2">In-Room Dining 24H</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 & 05 -->
+      <div class="grid md:grid-cols-2 gap-8 reveal">
+        <div class="relative h-[420px] overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=800&auto=format&fit=crop" alt="Pool" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <span class="font-display text-3xl text-hero-gold">04</span>
+            <h4 class="font-display text-xl text-white mt-1">Relaxation</h4>
+            <p class="text-xs text-white/70 mt-2 leading-relaxed">Sunlit pool, loungers and bar — Lagos slows down here. Evenings bring soft music and poolside grills.</p>
+          </div>
+        </div>
+        <div class="relative h-[420px] overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=800&auto=format&fit=crop" alt="Hospitality" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <span class="font-display text-3xl text-hero-gold">05</span>
+            <h4 class="font-display text-xl text-white mt-1">Hospitality</h4>
+            <p class="text-xs text-white/70 mt-2 leading-relaxed">Attentive, never intrusive. Our team remembers how you take your coffee — and anticipates what you need next.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Amenities -->
+<section id="amenities" class="py-20 md:py-28 bg-hero-charcoal text-white relative overflow-hidden">
+  <div class="absolute inset-0 opacity-[0.04]" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop');background-size:cover"></div>
+  <div class="max-w-[1400px] mx-auto px-6 relative">
+    <div class="flex flex-col lg:flex-row justify-between gap-8 mb-12 reveal">
+      <div>
+        <p class="text-[11px] tracking-[0.35em] text-hero-gold">AT YOUR SERVICE</p>
+        <h2 class="font-display text-[36px] md:text-[48px] font-light leading-none mt-3">Everything for a <span class="italic text-hero-gold">seamless</span> stay</h2>
+      </div>
+      <p class="max-w-md text-[13px] leading-relaxed text-white/60 lg:text-right">From high-speed connectivity to event spaces — every amenity designed to make business and leisure effortless.</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
+      <div class="bg-white/[0.04] border border-white/10 p-6 hover:bg-white/[0.07] hover:border-hero-gold/30 transition group">
+        <i class="fa-solid fa-wifi text-hero-gold text-xl mb-4 group-hover:scale-110 transition"></i>
+        <h4 class="font-medium text-sm">Free High-Speed Wi-Fi</h4>
+        <p class="text-xs text-white/50 mt-2 leading-relaxed">Fibre internet throughout — streaming ready.</p>
+      </div>
+      <div class="bg-white/[0.04] border border-white/10 p-6 hover:bg-white/[0.07] hover:border-hero-gold/30 transition group">
+        <i class="fa-solid fa-snowflake text-hero-gold text-xl mb-4 group-hover:scale-110 transition"></i>
+        <h4 class="font-medium text-sm">Air Conditioning</h4>
+        <p class="text-xs text-white/50 mt-2 leading-relaxed">Individually controlled, whisper quiet.</p>
+      </div>
+      <div class="bg-white/[0.04] border border-white/10 p-6 hover:bg-white/[0.07] hover:border-hero-gold/30 transition group">
+        <i class="fa-solid fa-bell-concierge text-hero-gold text-xl mb-4 group-hover:scale-110 transition"></i>
+        <h4 class="font-medium text-sm">24/7 Front Desk</h4>
+        <p class="text-xs text-white/50 mt-2 leading-relaxed">Concierge & assistance, always.</p>
+      </div>
+      <div class="bg-white/[0.04] border border-white/10 p-6 hover:bg-white/[0.07] hover:border-hero-gold/30 transition group">
+        <i class="fa-solid fa-square-parking text-hero-gold text-xl mb-4 group-hover:scale-110 transition"></i>
+        <h4 class="font-medium text-sm">Secure Parking</h4>
+        <p class="text-xs text-white/50 mt-2 leading-relaxed">CCTV & valet on request.</p>
+      </div>
+      <div class="bg-white/[0.04] border border-white/10 p-6 hover:bg-white/[0.07] hover:border-hero-gold/30 transition group">
+        <i class="fa-solid fa-utensils text-hero-gold text-xl mb-4 group-hover:scale-110 transition"></i>
+        <h4 class="font-medium text-sm">Room Service</h4>
+        <p class="text-xs text-white/50 mt-2 leading-relaxed">24-hour in-room dining.</p>
+      </div>
+      <div class="bg-white/[0.04] border border-white/10 p-6 hover:bg-white/[0.07] hover:border-hero-gold/30 transition group">
+        <i class="fa-solid fa-water-ladder text-hero-gold text-xl mb-4 group-hover:scale-110 transition"></i>
+        <h4 class="font-medium text-sm">Swimming Pool</h4>
+        <p class="text-xs text-white/50 mt-2 leading-relaxed">Outdoor pool with loungers & bar.</p>
+      </div>
+      <div class="bg-white/[0.04] border border-white/10 p-6 hover:bg-white/[0.07] hover:border-hero-gold/30 transition group">
+        <i class="fa-solid fa-martini-glass text-hero-gold text-xl mb-4 group-hover:scale-110 transition"></i>
+        <h4 class="font-medium text-sm">Restaurant & Bar</h4>
+        <p class="text-xs text-white/50 mt-2 leading-relaxed">Continental & Nigerian favourites.</p>
+      </div>
+      <div class="bg-white/[0.04] border border-white/10 p-6 hover:bg-white/[0.07] hover:border-hero-gold/30 transition group">
+        <i class="fa-solid fa-users text-hero-gold text-xl mb-4 group-hover:scale-110 transition"></i>
+        <h4 class="font-medium text-sm">Event / Meeting Space</h4>
+        <p class="text-xs text-white/50 mt-2 leading-relaxed">Boardroom & banquet flexible.</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 mt-16 pt-12 border-t border-white/10 reveal">
+      <div class="text-center">
+        <p class="font-display text-4xl font-light text-hero-gold counter" data-target="84">0</p>
+        <p class="text-[11px] tracking-[0.2em] text-white/50 mt-2">LUXURY ROOMS & SUITES</p>
+      </div>
+      <div class="text-center border-y md:border-y-0 md:border-x border-white/10 py-6 md:py-0">
+        <p class="font-display text-4xl font-light text-hero-gold"><span class="counter" data-target="12">0</span>k+</p>
+        <p class="text-[11px] tracking-[0.2em] text-white/50 mt-2">GUESTS HOSTED</p>
+      </div>
+      <div class="text-center">
+        <p class="font-display text-4xl font-light text-hero-gold"><span class="counter" data-target="98">0</span>%</p>
+        <p class="text-[11px] tracking-[0.2em] text-white/50 mt-2">SATISFACTION</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Dining -->
+<section id="dining" class="py-20 md:py-28 px-6 bg-hero-cream">
+  <div class="max-w-[1400px] mx-auto">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div class="reveal">
+        <p class="text-[11px] tracking-[0.35em] text-hero-gold font-medium">CULINARY</p>
+        <h2 class="font-display text-[36px] md:text-[48px] font-light leading-none mt-3">Dining at <span class="italic">Hero</span></h2>
+        <p class="text-[13px] leading-relaxed text-hero-muted mt-5">A menu that honours both Nigerian soul and continental finesse. Fire-grilled, slow-cooked, freshly baked — served in the restaurant, at the bar, by the pool or in your room.</p>
+
+        <div class="mt-8 space-y-5">
+          <div class="flex gap-4 pb-5 border-b border-[#E8E0D6]">
+            <div class="w-12 h-12 bg-white border border-[#E8E0D6] flex items-center justify-center"><i class="fa-solid fa-bacon text-hero-gold"></i></div>
+            <div>
+              <h4 class="font-medium text-sm">The Grill House</h4>
+              <p class="text-xs text-hero-muted mt-1">Open fire, charcoal aroma — suya, steaks, seafood. 18:00–23:00 + Poolside BBQ weekends.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 pb-5 border-b border-[#E8E0D6]">
+            <div class="w-12 h-12 bg-white border border-[#E8E0D6] flex items-center justify-center"><i class="fa-solid fa-mug-saucer text-hero-gold"></i></div>
+            <div>
+              <h4 class="font-medium text-sm">Hero Café & Bar</h4>
+              <p class="text-xs text-hero-muted mt-1">All-day dining, artisan coffee, cocktails. Breakfast 06:30–10:30, Light bites all day.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-12 h-12 bg-white border border-[#E8E0D6] flex items-center justify-center"><i class="fa-solid fa-bell-concierge text-hero-gold"></i></div>
+            <div>
+              <h4 class="font-medium text-sm">In-Room Dining</h4>
+              <p class="text-xs text-hero-muted mt-1">24-hour menu — from jollof to club sandwich — delivered in 30 minutes.</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="#contact" class="inline-flex mt-8 bg-hero-charcoal text-white px-7 py-3.5 text-[11px] tracking-[0.16em]">RESERVE A TABLE</a>
+      </div>
+      <div class="reveal reveal-delay-1 grid grid-cols-2 gap-4">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=600&auto=format&fit=crop" class="h-[260px] w-full object-cover" alt="Dining">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=600&auto=format&fit=crop" class="h-[260px] w-full object-cover mt-8" alt="Bar">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1200&auto=format&fit=crop" class="col-span-2 h-[240px] w-full object-cover" alt="Restaurant">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery" class="py-20 md:py-28 bg-white">
+  <div class="max-w-[1400px] mx-auto px-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 reveal">
+      <div>
+        <p class="text-[11px] tracking-[0.35em] text-hero-gold font-medium">VISUAL STORY</p>
+        <h2 class="font-display text-[36px] md:text-[52px] font-light leading-none mt-3">Gallery</h2>
+      </div>
+      <div class="flex flex-wrap gap-2" id="galleryFilters">
+        <button data-filter="all" class="filter-btn active bg-hero-charcoal text-white px-5 py-2.5 text-[11px] tracking-widest">ALL</button>
+        <button data-filter="rooms" class="filter-btn border border-[#E8E0D6] hover:border-hero-charcoal px-5 py-2.5 text-[11px] tracking-widest">ROOMS</button>
+        <button data-filter="interiors" class="filter-btn border border-[#E8E0D6] hover:border-hero-charcoal px-5 py-2.5 text-[11px] tracking-widest">INTERIORS</button>
+        <button data-filter="dining" class="filter-btn border border-[#E8E0D6] hover:border-hero-charcoal px-5 py-2.5 text-[11px] tracking-widest">DINING</button>
+        <button data-filter="amenities" class="filter-btn border border-[#E8E0D6] hover:border-hero-charcoal px-5 py-2.5 text-[11px] tracking-widest">AMENITIES</button>
+        <button data-filter="exterior" class="filter-btn border border-[#E8E0D6] hover:border-hero-charcoal px-5 py-2.5 text-[11px] tracking-widest">EXTERIOR</button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4" id="galleryGrid">
+      <div class="gallery-item relative h-[240px] md:h-[320px] md:row-span-2" data-cat="rooms" data-src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover" alt="">
+        <span class="absolute bottom-2 left-2 bg-white/90 px-2 py-1 text-[10px] tracking-widest">ROOM • STANDARD</span>
+      </div>
+      <div class="gallery-item h-[240px]" data-cat="interiors" data-src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover" alt="">
+        <span class="absolute bottom-2 left-2 bg-white/90 px-2 py-1 text-[10px] tracking-widest">LOBBY</span>
+      </div>
+      <div class="gallery-item h-[240px]" data-cat="dining" data-src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover" alt="">
+        <span class="absolute bottom-2 left-2 bg-white/90 px-2 py-1 text-[10px] tracking-widest">DINING</span>
+      </div>
+      <div class="gallery-item h-[240px]" data-cat="amenities" data-src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover" alt="">
+        <span class="absolute bottom-2 left-2 bg-white/90 px-2 py-1 text-[10px] tracking-widest">POOL</span>
+      </div>
+      <div class="gallery-item h-[240px]" data-cat="rooms" data-src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover" alt="">
+        <span class="absolute bottom-2 left-2 bg-white/90 px-2 py-1 text-[10px] tracking-widest">DELUXE</span>
+      </div>
+      <div class="gallery-item h-[240px]" data-cat="exterior" data-src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover" alt="">
+        <span class="absolute bottom-2 left-2 bg-white/90 px-2 py-1 text-[10px] tracking-widest">EXTERIOR</span>
+      </div>
+      <div class="gallery-item h-[240px]" data-cat="rooms" data-src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover" alt="">
+        <span class="absolute bottom-2 left-2 bg-white/90 px-2 py-1 text-[10px] tracking-widest">PRESIDENTIAL</span>
+      </div>
+      <div class="gallery-item h-[240px]" data-cat="interiors" data-src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover" alt="">
+        <span class="absolute bottom-2 left-2 bg-white/90 px-2 py-1 text-[10px] tracking-widest">LOUNGE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="py-20 md:py-28 bg-hero-cream border-t border-[#E8E0D6]">
+  <div class="max-w-[1400px] mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="reveal">
+        <p class="text-[11px] tracking-[0.35em] text-hero-gold font-medium">OUR STORY</p>
+        <h2 class="font-display text-[34px] md:text-[46px] font-light leading-[0.95] mt-3">A modern hotel with<br><span class="italic">Lagos soul</span></h2>
+        <div class="w-12 h-[1px] bg-hero-gold mt-6"></div>
+        <p class="text-[13px] leading-relaxed text-hero-muted mt-6">Hero Hotel was envisioned as a quiet counterpoint to the energy of Victoria Island — a place where design, comfort and genuine care converge. No borrowed heritage, no invented awards — just a sincere commitment to making every guest feel exceptionally at home.</p>
+        <p class="text-[13px] leading-relaxed text-hero-muted mt-4">Replace this demo text with your real story, founders, vision and milestones. All images and copy are placeholders, easy to edit.</p>
+        <div class="flex gap-8 mt-8">
+          <div>
+            <p class="font-display text-2xl">2019</p>
+            <p class="text-[10px] tracking-widest text-hero-muted">CONCEIVED</p>
+          </div>
+          <div class="w-[1px] bg-[#E8E0D6]"></div>
+          <div>
+            <p class="font-display text-2xl">84</p>
+            <p class="text-[10px] tracking-widest text-hero-muted">ROOMS & SUITES</p>
+          </div>
+          <div class="w-[1px] bg-[#E8E0D6]"></div>
+          <div>
+            <p class="font-display text-2xl">Lagos</p>
+            <p class="text-[10px] tracking-widest text-hero-muted">HEART OF VI</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1 relative">
+        <img src="https://images.unsplash.com/photo-1551016548-3a19c34e48b3?q=80&w=1000&auto=format&fit=crop" alt="About" class="w-full h-[520px] object-cover">
+        <div class="absolute -bottom-6 -left-6 bg-white p-6 shadow-lg border border-[#E8E0D6] hidden md:block max-w-[280px]">
+          <p class="font-display italic text-lg leading-snug">“Hospitality is not a service. It is a feeling — of being seen.”</p>
+          <p class="text-[11px] tracking-widest text-hero-muted mt-3">— HERO HOTEL PHILOSOPHY</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="py-20 md:py-28 bg-[#0F0F0F] text-white">
+  <div class="max-w-[1400px] mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-12">
+      <div class="reveal">
+        <p class="text-[11px] tracking-[0.35em] text-hero-gold">GET IN TOUCH</p>
+        <h2 class="font-display text-[36px] md:text-[48px] font-light leading-none mt-3">We’re here to <span class="italic text-hero-gold">host</span> you</h2>
+        <p class="text-[13px] leading-relaxed text-white/60 mt-4">Whether you’re planning a stay, an event or simply have a question — our team responds promptly. All contact details below are editable placeholders.</p>
+
+        <div class="grid sm:grid-cols-2 gap-4 mt-8">
+          <div class="bg-white/[0.06] border border-white/10 p-5">
+            <p class="text-[10px] tracking-[0.2em] text-white/50">PHONE</p>
+            <p class="text-sm font-medium mt-2">+234 800 000 0000</p>
+            <p class="text-xs text-white/50 mt-1">24/7 Front Desk</p>
+            <a href="tel:+2348000000000" class="inline-block mt-3 text-[11px] tracking-widest bg-white text-black px-4 py-2">CALL NOW</a>
+          </div>
+          <div class="bg-white/[0.06] border border-white/10 p-5">
+            <p class="text-[10px] tracking-[0.2em] text-white/50">WHATSAPP</p>
+            <p class="text-sm font-medium mt-2">+234 800 000 0000</p>
+            <p class="text-xs text-white/50 mt-1">Fastest response</p>
+            <a href="https://wa.me/2348000000000?text=Hello%20Hero%20Hotel%2C%20I%27d%20like%20to%20make%20a%20reservation." target="_blank" class="inline-block mt-3 text-[11px] tracking-widest bg-[#25D366] text-white px-4 py-2"><i class="fa-brands fa-whatsapp mr-1"></i> WHATSAPP</a>
+          </div>
+          <div class="bg-white/[0.06] border border-white/10 p-5">
+            <p class="text-[10px] tracking-[0.2em] text-white/50">EMAIL</p>
+            <p class="text-sm font-medium mt-2">hello@herohotel.ng</p>
+            <p class="text-xs text-white/50 mt-1">reservations@herohotel.ng</p>
+            <a href="mailto:hello@herohotel.ng" class="inline-block mt-3 text-[11px] tracking-widest border border-white/20 px-4 py-2">SEND EMAIL</a>
+          </div>
+          <div class="bg-white/[0.06] border border-white/10 p-5">
+            <p class="text-[10px] tracking-[0.2em] text-white/50">ADDRESS</p>
+            <p class="text-sm font-medium mt-2 leading-snug">12 Adeola Odeku Street,<br>Victoria Island, Lagos</p>
+            <a href="https://maps.google.com/?q=Victoria+Island+Lagos" target="_blank" class="inline-block mt-3 text-[11px] tracking-widest border border-white/20 px-4 py-2">GET DIRECTIONS</a>
+          </div>
+        </div>
+
+        <div class="mt-6 flex items-center gap-3 text-xs text-white/50">
+          <i class="fa-regular fa-clock text-hero-gold"></i> Front Desk: 24 hours • Check-in 14:00 • Check-out 12:00
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <div class="bg-white text-hero-charcoal p-6 md:p-8">
+          <h3 class="font-display text-xl">Send a message</h3>
+          <p class="text-xs text-hero-muted mt-2">We typically reply within 30 minutes during business hours.</p>
+          <form id="contactForm" class="mt-6 space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+              <input type="text" placeholder="Full Name" required class="booking-input w-full px-4 py-3.5 text-sm">
+              <input type="tel" placeholder="Phone" class="booking-input w-full px-4 py-3.5 text-sm">
+            </div>
+            <input type="email" placeholder="Email Address" required class="booking-input w-full px-4 py-3.5 text-sm">
+            <select class="booking-input w-full px-4 py-3.5 text-sm">
+              <option>General Inquiry</option>
+              <option>Reservation</option>
+              <option>Event / Meeting</option>
+              <option>Feedback</option>
+            </select>
+            <textarea placeholder="How can we help?" rows="4" class="booking-input w-full px-4 py-3.5 text-sm resize-none"></textarea>
+            <button type="submit" class="w-full bg-hero-charcoal hover:bg-black text-white py-4 text-[11px] tracking-[0.18em] transition">SEND MESSAGE</button>
+            <p class="text-[10px] text-center text-hero-muted">Demo form — connect to your email/CRM. No data is sent in this demo.</p>
+          </form>
+        </div>
+        <!-- Map placeholder -->
+        <div class="mt-4 h-[220px] bg-[#1A1A1A] border border-white/10 relative overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-40" alt="Map">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <a href="https://maps.google.com/?q=Victoria+Island+Lagos" target="_blank" class="bg-white text-black px-6 py-3 text-xs tracking-widest font-medium">OPEN IN GOOGLE MAPS</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-black text-white border-t border-white/5">
+  <div class="max-w-[1400px] mx-auto px-6 py-14">
+    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-10">
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 border border-hero-gold flex items-center justify-center">
+            <span class="font-display font-semibold text-white text-sm tracking-[0.2em]">H</span>
+          </div>
+          <div class="leading-none">
+            <p class="font-display text-white text-[18px] tracking-[0.28em] font-medium">HERO</p>
+            <p class="font-body text-[8px] tracking-[0.45em] text-white/60 -mt-1">HOTEL</p>
+          </div>
+        </div>
+        <p class="text-xs leading-relaxed text-white/50 mt-5 max-w-sm">A refined sanctuary in Victoria Island, Lagos. Contemporary luxury, warm hospitality and attention to every detail. Demo content — replace with your brand story.</p>
+        <div class="flex gap-3 mt-6">
+          <a href="#" class="w-9 h-9 border border-white/10 flex items-center justify-center hover:border-hero-gold hover:text-hero-gold transition"><i class="fa-brands fa-instagram text-sm"></i></a>
+          <a href="#" class="w-9 h-9 border border-white/10 flex items-center justify-center hover:border-hero-gold hover:text-hero-gold transition"><i class="fa-brands fa-x-twitter text-sm"></i></a>
+          <a href="#" class="w-9 h-9 border border-white/10 flex items-center justify-center hover:border-hero-gold hover:text-hero-gold transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+          <a href="https://wa.me/2348000000000" target="_blank" class="w-9 h-9 bg-[#25D366] flex items-center justify-center"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <p class="text-[11px] tracking-[0.2em] font-medium">QUICK LINKS</p>
+        <ul class="mt-4 space-y-2.5 text-xs text-white/60">
+          <li><a href="#home" class="hover:text-hero-gold">Home</a></li>
+          <li><a href="#rooms" class="hover:text-hero-gold">Rooms & Suites</a></li>
+          <li><a href="#experience" class="hover:text-hero-gold">Experience</a></li>
+          <li><a href="#dining" class="hover:text-hero-gold">Dining</a></li>
+          <li><a href="#gallery" class="hover:text-hero-gold">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-[11px] tracking-[0.2em] font-medium">ROOMS</p>
+        <ul class="mt-4 space-y-2.5 text-xs text-white/60">
+          <li>Standard — ₦45,000</li>
+          <li>Deluxe — ₦65,000</li>
+          <li>Executive — ₦95,000</li>
+          <li>Presidential — ₦180,000</li>
+          <li class="text-[10px] text-white/30">Demo pricing — subject to confirmation</li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-[11px] tracking-[0.2em] font-medium">CONTACT</p>
+        <ul class="mt-4 space-y-2.5 text-xs text-white/60">
+          <li>12 Adeola Odeku, VI, Lagos</li>
+          <li>+234 800 000 0000</li>
+          <li>hello@herohotel.ng</li>
+          <li class="pt-2"><a href="https://wa.me/2348000000000" class="text-[#25D366]">WhatsApp Booking →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 mt-12 pt-8 border-t border-white/10 text-[11px] text-white/40">
+      <p>© 2024 HERO HOTEL — Demo website. All content is placeholder and editable.</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-white">Privacy Policy</a>
+        <a href="#" class="hover:text-white">Terms</a>
+        <a href="#" class="hover:text-white">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/2348000000000?text=Hello%20Hero%20Hotel%2C%20I%27d%20like%20to%20make%20a%20reservation." target="_blank" id="floatingWsp" class="fixed bottom-5 right-5 z-40 bg-[#25D366] text-white w-14 h-14 rounded-full shadow-[0_8px_24px_rgba(0,0,0,.25)] flex items-center justify-center hover:scale-105 transition">
+  <i class="fa-brands fa-whatsapp text-2xl"></i>
+</a>
+
+<!-- Room Detail Modal -->
+<div id="roomModal" class="fixed inset-0 z-50 hidden">
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeRoom()"></div>
+  <div class="absolute inset-0 md:inset-6 lg:inset-10 bg-white overflow-auto">
+    <button onclick="closeRoom()" class="absolute top-4 right-4 w-10 h-10 bg-black text-white flex items-center justify-center z-10 hover:bg-hero-gold transition"><i class="fa-solid fa-xmark"></i></button>
+    <div id="roomModalContent" class="grid lg:grid-cols-2 min-h-full">
+      <!-- injected -->
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" class="fixed inset-0 z-50 hidden bg-black/90 flex items-center justify-center p-4">
+  <button onclick="closeLightbox()" class="absolute top-5 right-5 w-10 h-10 bg-white/10 text-white flex items-center justify-center hover:bg-white hover:text-black transition"><i class="fa-solid fa-xmark"></i></button>
+  <button id="lbPrev" class="absolute left-4 md:left-8 w-10 h-10 bg-white/10 text-white flex items-center justify-center hover:bg-white hover:text-black transition"><i class="fa-solid fa-chevron-left"></i></button>
+  <img id="lbImg" src="" alt="" class="max-w-full max-h-[85vh] object-contain">
+  <button id="lbNext" class="absolute right-4 md:right-8 w-10 h-10 bg-white/10 text-white flex items-center justify-center hover:bg-white hover:text-black transition"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 bg-hero-charcoal text-white px-6 py-3 text-xs tracking-widest shadow-lg hidden z-50"></div>
+
+<script>
+  // Loader
+  window.addEventListener('load', ()=>{
+    setTimeout(()=> document.getElementById('loader').classList.add('hide'), 900);
+  });
+
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  const heroImg = document.getElementById('heroImg');
+  window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 40){ navbar.classList.add('nav-scrolled'); } else { navbar.classList.remove('nav-scrolled'); }
+    if(heroImg){ heroImg.style.transform = `scale(1.06) translateY(${window.scrollY*0.12}px)`; }
+  });
+
+  // Mobile menu
+  const menuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', ()=>{
+    mobileMenu.classList.toggle('hidden');
+    const icon = menuBtn.querySelector('i');
+    icon.className = mobileMenu.classList.contains('hidden') ? 'fa-solid fa-bars text-sm' : 'fa-solid fa-xmark text-sm';
+  });
+  document.querySelectorAll('.mobile-link').forEach(a=> a.addEventListener('click', ()=> mobileMenu.classList.add('hidden')));
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('active'); });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=> observer.observe(el));
+
+  // Counters
+  const counterObserver = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el = e.target;
+        const target = parseInt(el.dataset.target);
+        let count=0;
+        const step = target/60;
+        const t = setInterval(()=>{
+          count+=step;
+          if(count>=target){ count=target; clearInterval(t); }
+          el.textContent = Math.floor(count);
+        }, 18);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, {threshold:0.5});
+  document.querySelectorAll('.counter').forEach(c=> counterObserver.observe(c));
+
+  // Default dates
+  const today = new Date();
+  const tomorrow = new Date(); tomorrow.setDate(today.getDate()+1);
+  const fmt = d=> d.toISOString().split('T')[0];
+  const ci = document.getElementById('checkIn');
+  const co = document.getElementById('checkOut');
+  if(ci && co){ ci.value = fmt(today); co.value = fmt(tomorrow); ci.min = fmt(today); co.min = fmt(tomorrow); }
+
+  // Booking
+  function showToast(msg){
+    const t=document.getElementById('toast');
+    t.textContent=msg; t.classList.remove('hidden');
+    setTimeout(()=> t.classList.add('hidden'), 2600);
+  }
+  document.getElementById('checkAvailability').addEventListener('click', ()=>{
+    const cin=ci.value, cout=co.value, guests=document.getElementById('guests').value, type=document.getElementById('roomType').value;
+    if(!cin || !cout){ showToast('Please select check-in & check-out dates'); return; }
+    showToast('Checking availability for '+type+' — '+guests+' • '+cin+' → '+cout);
+    document.getElementById('rooms').scrollIntoView({behavior:'smooth'});
+  });
+  function waLink(msg){
+    const num='2348000000000'; // EDITABLE placeholder
+    return `https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
+  }
+  document.getElementById('bookWhatsapp').addEventListener('click', ()=>{
+    const cin=ci.value, cout=co.value, guests=document.getElementById('guests').value, rooms=document.getElementById('roomsCount').value, type=document.getElementById('roomType').value;
+    const msg=`Hello Hero Hotel, I'd like to check availability: ${type}, ${guests}, ${rooms}, Check-in ${cin}, Check-out ${cout}. Please confirm pricing.`;
+    window.open(waLink(msg), '_blank');
+  });
+  function bookRoom(room){
+    const cin=ci.value||'—', cout=co.value||'—';
+    const msg=`Hello Hero Hotel, I'd like to book: ${room}. Dates: ${cin} to ${cout}. Please confirm availability and total.`;
+    window.open(waLink(msg), '_blank');
+  }
+
+  // Rooms data
+  const roomsData = [
+    {
+      title:'Standard Room',
+      price:'₦45,000',
+      size:'28 sqm', guests:'2 Guests', bed:'Queen Bed', view:'City View',
+      desc:'Calm and efficiently planned — premium bedding, ergonomic desk, walk-in shower and curated minibar. Ideal for business travellers who value quiet comfort and fast Wi-Fi.',
+      images:[
+        'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=800&auto=format&fit=crop'
+      ],
+      amenities:['Free Wi-Fi','Air Conditioning','Smart TV 43"','Work Desk','Rainfall Shower','Minibar','Safe','Room Service']
+    },
+    {
+      title:'Deluxe Room',
+      price:'₦65,000',
+      size:'35 sqm', guests:'2 Guests', bed:'King Bed', view:'Garden View',
+      desc:'A spacious retreat with lounge chair, king bed and balcony. Warm timber, soft linen and thoughtful lighting create a restful, residential feel.',
+      images:[
+        'https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1560448204-603b3fc33ddc?q=80&w=800&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=800&auto=format&fit=crop'
+      ],
+      amenities:['Free Wi-Fi','Air Conditioning','Private Balcony','King Bed','Bathtub + Shower','Nespresso','Minibar','Room Service']
+    },
+    {
+      title:'Executive Suite',
+      price:'₦95,000',
+      size:'48 sqm', guests:'3 Guests', bed:'King + Lounge', view:'Panoramic',
+      desc:'Separate living area, dining nook and expansive windows. Perfect for extended stays, small meetings or simply stretching out in style.',
+      images:[
+        'https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=800&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=800&auto=format&fit=crop'
+      ],
+      amenities:['Living Area','Dining Nook','Bathtub','Nespresso Machine','Executive Lounge Access','Minibar','Work Desk','24h Room Service']
+    },
+    {
+      title:'Presidential Suite',
+      price:'₦180,000',
+      size:'85 sqm', guests:'4 Guests', bed:'King Bedroom + Lounge', view:'Private Terrace',
+      desc:'Our signature suite — private terrace, dining for six, curated art and dedicated butler. An address in itself for those who expect more.',
+      images:[
+        'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=800&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=800&auto=format&fit=crop'
+      ],
+      amenities:['Private Terrace','Butler Service','Jacuzzi','Dining for 6','Meeting Area','Premium Minibar','Jacuzzi Bathroom','Airport Transfer*']
+    }
+  ];
+
+  let currentRoom = 0;
+  function openRoom(idx){
+    currentRoom=idx;
+    const r=roomsData[idx];
+    const modal=document.getElementById('roomModal');
+    const content=document.getElementById('roomModalContent');
+    content.innerHTML = `
+      <div class="bg-black">
+        <div class="h-[360px] lg:h-[560px] overflow-hidden relative">
+          <img id="modalMainImg" src="${r.images[0]}" class="w-full h-full object-cover">
+          <div class="absolute bottom-4 left-4 right-4 flex gap-2">
+            ${r.images.map((img,i)=>`<button onclick="document.getElementById('modalMainImg').src='${img}'" class="w-20 h-16 overflow-hidden border-2 ${i===0?'border-hero-gold':'border-white/30'}"><img src="${img}" class="w-full h-full object-cover"></button>`).join('')}
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-2 p-3 bg-black">
+          ${r.images.map(img=>`<img src="${img}" class="h-20 w-full object-cover opacity-60 hover:opacity-100 cursor-pointer" onclick="document.getElementById('modalMainImg').src='${img}'">`).join('')}
+        </div>
+      </div>
+      <div class="p-7 lg:p-10">
+        <p class="text-[11px] tracking-[0.2em] text-hero-gold">${r.view} • ${r.size}</p>
+        <h3 class="font-display text-3xl mt-2">${r.title}</h3>
+        <p class="text-sm text-hero-muted mt-3 leading-relaxed">${r.desc}</p>
+
+        <div class="grid grid-cols-3 gap-3 mt-7">
+          <div class="bg-hero-cream border border-[#E8E0D6] p-4 text-center">
+            <p class="text-[11px] tracking-widest text-hero-muted">BED TYPE</p>
+            <p class="text-sm font-medium mt-1">${r.bed}</p>
+          </div>
+          <div class="bg-hero-cream border border-[#E8E0D6] p-4 text-center">
+            <p class="text-[11px] tracking-widest text-hero-muted">GUESTS</p>
+            <p class="text-sm font-medium mt-1">${r.guests}</p>
+          </div>
+          <div class="bg-hero-cream border border-[#E8E0D6] p-4 text-center">
+            <p class="text-[11px] tracking-widest text-hero-muted">SIZE</p>
+            <p class="text-sm font-medium mt-1">${r.size}</p>
+          </div>
+        </div>
+
+        <div class="mt-7">
+          <p class="text-xs tracking-[0.18em] font-medium">AMENITIES</p>
+          <div class="flex flex-wrap gap-2 mt-3">
+            ${r.amenities.map(a=>`<span class="text-xs bg-hero-cream border border-[#E8E0D6] px-3 py-1.5">${a}</span>`).join('')}
+          </div>
+        </div>
+
+        <div class="mt-8 p-5 bg-hero-cream border border-[#E8E0D6] flex items-center justify-between">
+          <div>
+            <p class="text-[11px] tracking-widest text-hero-muted">FROM</p>
+            <p class="font-display text-2xl">${r.price} <span class="text-sm font-body text-hero-muted">/ night</span></p>
+            <p class="text-[10px] text-hero-muted">Demo pricing — subject to confirmation</p>
+          </div>
+          <span class="hidden md:block text-[11px] text-hero-muted">Breakfast optional • Taxes incl.</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
+          <button onclick="bookRoom('${r.title} — ${r.price}/night')" class="bg-hero-gold hover:bg-hero-gold-dark text-white py-4 text-[11px] tracking-[0.16em] font-medium">BOOK VIA WHATSAPP</button>
+          <button onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'}); closeRoom();" class="border border-hero-charcoal py-4 text-[11px] tracking-[0.16em] font-medium">CHECK AVAILABILITY</button>
+        </div>
+        <p class="text-xs text-hero-muted mt-4 text-center">Or call <a href="tel:+2348000000000" class="text-hero-gold">+234 800 000 0000</a> — 24/7</p>
+      </div>
+    `;
+    modal.classList.remove('hidden');
+    document.body.style.overflow='hidden';
+  }
+  function closeRoom(){
+    document.getElementById('roomModal').classList.add('hidden');
+    document.body.style.overflow='';
+  }
+
+  // Gallery filter + lightbox
+  const filterBtns=document.querySelectorAll('.filter-btn');
+  const galleryItems=document.querySelectorAll('.gallery-item');
+  filterBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      filterBtns.forEach(b=>{b.classList.remove('active','bg-hero-charcoal','text-white'); b.classList.add('border','border-[#E8E0D6]')});
+      btn.classList.add('active','bg-hero-charcoal','text-white'); btn.classList.remove('border','border-[#E8E0D6]');
+      const f=btn.dataset.filter;
+      galleryItems.forEach(item=>{
+        const cat=item.dataset.cat;
+        if(f==='all' || cat===f){ item.style.display=''; item.classList.remove('hidden'); }
+        else { item.style.display='none'; }
+      });
+    });
+  });
+
+  let lbIndex=0;
+  const lbImages = Array.from(galleryItems).map(i=>i.dataset.src);
+  const lightbox=document.getElementById('lightbox');
+  const lbImg=document.getElementById('lbImg');
+  function openLightbox(idx){
+    lbIndex=idx;
+    lbImg.src=lbImages[idx];
+    lightbox.classList.remove('hidden');
+    document.body.style.overflow='hidden';
+  }
+  function closeLightbox(){
+    lightbox.classList.add('hidden');
+    document.body.style.overflow='';
+  }
+  galleryItems.forEach((item,idx)=>{
+    item.addEventListener('click', ()=> openLightbox(idx));
+  });
+  document.getElementById('lbPrev').addEventListener('click', ()=>{
+    lbIndex=(lbIndex-1+lbImages.length)%lbImages.length;
+    lbImg.src=lbImages[lbIndex];
+  });
+  document.getElementById('lbNext').addEventListener('click', ()=>{
+    lbIndex=(lbIndex+1)%lbImages.length;
+    lbImg.src=lbImages[lbIndex];
+  });
+  lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) closeLightbox(); });
+  // swipe
+  let touchStartX=0;
+  lightbox.addEventListener('touchstart', e=> touchStartX=e.touches[0].clientX);
+  lightbox.addEventListener('touchend', e=>{
+    const dx=e.changedTouches[0].clientX - touchStartX;
+    if(Math.abs(dx)>50){
+      if(dx<0) document.getElementById('lbNext').click();
+      else document.getElementById('lbPrev').click();
+    }
+  });
+
+  // Contact form
+  document.getElementById('contactForm').addEventListener('submit', e=>{
+    e.preventDefault();
+    showToast('Message sent! (Demo — connect to email/CRM)');
+    e.target.reset();
+  });
+
+  // Magnetic buttons
+  document.querySelectorAll('.magnetic').forEach(btn=>{
+    btn.addEventListener('mousemove', e=>{
+      const rect=btn.getBoundingClientRect();
+      const x=e.clientX - rect.left - rect.width/2;
+      const y=e.clientY - rect.top - rect.height/2;
+      btn.style.transform=`translate(${x*0.15}px, ${y*0.15}px)`;
+    });
+    btn.addEventListener('mouseleave', ()=> btn.style.transform='translate(0,0)');
+  });
+
+  // keyboard close
+  document.addEventListener('keydown', e=>{
+    if(e.key==='Escape'){ closeRoom(); closeLightbox(); }
+  });
+</script>
+</body>
+</html>
